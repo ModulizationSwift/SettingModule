@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SettingModule'
-  s.version          = '0.1.0'
+  s.version          = '0.0.0'
   s.summary          = 'A short description of SettingModule.'
 
 # This description is used to generate tags and improve search results.
@@ -32,28 +32,27 @@ TODO: Add long description of the pod here.
 
 
   $lib = ENV['use_lib']
-    $lib_name = ENV["#{s.name}_use_lib"]
-    if $lib || $lib_name
-       puts '---------binary-------'
-       s.ios.vendored_framework = "Framework/#{s.version}/#{s.name}.framework"
-       //这种是帮你打包成bundle
-       s.resource_bundles = {
-         "#{s.name}" => ["#{s.name}/Assets/*.{png,xib,plist}"]
-       }
-       //这种是你已经打包好了bundle，推荐这种，可以省去每次pod帮你生成bundle的时间
-      #  s.resources = "#{s.name}/Assets/*.bundle"
-    else
-       puts '.......source........'
-       s.source_files = "#{s.name}/Classes/**/*"
-       s.resources = "#{s.name}/Assets/*.bundle"
-       s.public_header_files = "#{s.name}/Classes/**/*.h"
-    end
-
-    s.preserve_paths = "#{s.name}/Classes/**/*","#{s.name}/Assets/*.{png,xib,plist}","Framework/#{s.version}/#{s.name}.framework"
+  $lib_name = ENV["#{s.name}_use_lib"]
+  if $lib || $lib_name
+     puts '---------binary-------'
+     s.ios.vendored_framework = "Framework/#{s.version}/#{s.name}.framework"
+    #  这种是帮你打包成bundle
+    #  s.resource_bundles = {
+    #    "#{s.name}" => ["#{s.name}/Assets/*.{png,xib,plist}"]
+    #  }
+    #  这种是你已经打包好了bundle，推荐这种，可以省去每次pod帮你生成bundle的时间
+     s.resources = "#{s.name}/Assets/*.bundle"
+  else
+     puts '.......source........'
+     s.source_files = "#{s.name}/Classes/**/*"
+    #  s.resources = "#{s.name}/Assets/*.bundle"
+    #  s.public_header_files = "#{s.name}/Classes/**/*.h"
+  end
 
 
+  s.source_files = 'SettingModule/Classes/**/*'
 
-  # s.source_files = 'SettingModule/Classes/**/*'
+  s.preserve_paths = "#{s.name}/Classes/**/*","#{s.name}/Assets/*.{png,xib,plist}","Framework/#{s.version}/#{s.name}.framework"
 
   # s.resource_bundles = {
   #   'SettingModule' => ['SettingModule/Assets/*.png']
